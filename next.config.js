@@ -3,7 +3,7 @@ module.exports = {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: "192.168.3.16",
+          hostname: "subodh21.pythonanywhere.com/",
           port: '',
           pathname: '/account123/**',
         },
