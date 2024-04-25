@@ -33,7 +33,7 @@ const res = await fetch(api.Api+"loginadmin/", {
 
 
 
-export default  function page() {
+export default  function Page() {
   const [fieldError, setFieldError] = useState("");
   const [loading, setLoading] = useState(true);
   const [logging, setLogging] = useState(false);

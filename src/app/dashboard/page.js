@@ -102,7 +102,7 @@ finalCategory[11].value = whiteGlass;
   return finalCategory;
 }
 
-const page = () => {
+const Page = () => {
   const [alldata, setAllData] = useState([]);
   const [cat, setCat] = useState([]);
   // const allDataCategory = (alldata) =>{
@@ -138,4 +138,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

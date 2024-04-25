@@ -29,7 +29,7 @@ return isSaved;
 
 
 
-const page = () => { 
+const Page = () => { 
   const router = useRouter();
   const [vars, setVars] = useState({
     campaign_name: "", target_audience: "",  location: "", objective: "", start_date: "", end_date: "" , status: "planned"
@@ -115,4 +115,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

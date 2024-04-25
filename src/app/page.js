@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
   
   return (
     <div className='bg-black text-white flex justify-center items-center h-screen flex-col'>
@@ -14,4 +14,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

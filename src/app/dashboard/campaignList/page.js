@@ -17,7 +17,7 @@ async function fetchCampaign (){
 }
 
 
-const page = () => {
+const Page = () => {
   const [alldata, setAllData] = useState([]);
 
   useEffect(()=>{
@@ -96,4 +96,4 @@ const page = () => {
       )
 }
 
-export default page
+export default Page

@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React,{useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { api } from '@/app/lib/api'
 
 async function fetchCampaign (){
@@ -17,7 +17,7 @@ async function fetchCampaign (){
 }
 
 
-const page = () => {
+const Page = () => {
   const [alldata, setAllData] = useState([]);
 
   useEffect(()=>{
@@ -87,4 +87,4 @@ const page = () => {
       )
 }
 
-export default page
+export default Page
