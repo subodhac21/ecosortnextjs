@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { api } from '@/app/lib/api';
 
-const page = () => {
+const Page = () => {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(null);
     const [image, setImage] = useState(null);
