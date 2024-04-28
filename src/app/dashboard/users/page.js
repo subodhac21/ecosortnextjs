@@ -17,8 +17,10 @@ async function fetchUsers (){
 }
 
 
+
 const Page = () => {
   const [alldata, setAllData] = useState([]);
+  const [deleteUserId, setDeleteUserId] = useState(0);
 
   useEffect(()=>{
     const fetchAllUsers = async() =>{
@@ -26,7 +28,23 @@ const Page = () => {
       setAllData(data);
     }
     fetchAllUsers();
-  },[])
+  },[deleteUserId])
+
+const deleteUser = async(e) => {
+  const id = e.target.dataset.id;
+  const res = await fetch(api.Api+"deleteuserbyid/", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({"user_id": id}),
+  })
+  const response = await res.json();
+  if(response['message'] ==="User deleted"){
+    setDeleteUserId(id);
+  }
+}
+
     return (
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="sm:flex sm:items-center">
@@ -55,24 +73,31 @@ const Page = () => {
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Is SuperUser
                       </th>
-                     
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Delete
+                     </th>
                       
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                {alldata.map((users,id) => 
-                (
-                  <tr key={id}>
-                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                      {users.username}
-                    </td>
+                {alldata.map((users,id) => {
+ if(users.is_superuser){
+  <tr key={id}>
+  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+    {users.username}
+  </td>
 
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.last_login}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.email}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.is_superuser === false ? "no": "yes"}</td>
-                  
-                  </tr>
-                ))}
+  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.last_login}</td>
+  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.email}</td>
+  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{users.is_superuser === false ? "no": "yes"}</td>
+  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><button data-id={users.id} type='button' onClick={(e)=>deleteUser(e)} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete User</button></td>
+</tr>
+}
+                
+                
+                 
+                 
+})}
               </tbody>
                 </table>
               </div>
