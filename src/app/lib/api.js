@@ -1,3 +1,3 @@
 export const api = {
-    Api: `http://127.0.0.1:8000/`
+    Api: `https://subodh21.pythonanywhere.com/`
 }
