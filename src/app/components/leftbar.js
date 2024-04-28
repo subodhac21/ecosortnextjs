@@ -142,7 +142,7 @@ export default function Example({children}) {
                     <div className="flex h-16 shrink-0 items-center">
                       <img
                         className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        src={"/asset/Eco1.png"}
                         alt="Your Company"
                       />
                     </div>
@@ -323,7 +323,7 @@ export default function Example({children}) {
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full bg-gray-50"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src="https://media.licdn.com/dms/image/D5603AQFYXLAzpogQ8g/profile-displayphoto-shrink_200_200/0/1688828441512?e=1720051200&v=beta&t=WCy7th0rMPYlDXLXi3lsGriGHR2ADDC0LvdF9E8vPus"
                       alt=""
                     />
                     <span className="hidden lg:flex lg:items-center">
