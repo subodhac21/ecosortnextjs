@@ -21,7 +21,6 @@ export default function DashboardLayout({
       validateKey();
       
     },[])
-    console.log(username);
     return (
       <section className="bg-white">
         <Example>

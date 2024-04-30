@@ -14,6 +14,7 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
+  BlogsIcon
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
@@ -83,8 +84,10 @@ export default function Example({children}) {
     { name: 'Dashboard', href: '/dashboard/', icon: HomeIcon, current: path ==="/dashboard"?true: false },
     { name: 'Garbages', href: '/dashboard/garbages', icon: FolderIcon, current: path ==="/dashboard/garbages"? true: false },
     { name: 'Campaigns', href: '/dashboard/campaignList', icon: CalendarIcon, current: path ==="/dashboard/campaignList"? true: false },
+    { name: 'Blogs', href: '/dashboard/blogs', icon: FolderIcon, current: path === "/dashboard/blogs" ? true: false },
     { name: 'Achievements', href: '/dashboard/achievements', icon: DocumentDuplicateIcon, current: path ==="/dashboard/achievements"? true: false },
     { name: 'Users', href: '/dashboard/users', icon: UsersIcon, current: path === "/dashboard/users" ? true: false },
+
   //   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
   ]
   const router = useRouter();
