@@ -42,7 +42,6 @@ async function fetchGarbages (){
   let trash = 0;
   let whiteGlass = 0;
   data.forEach((categoryAll)=>{
-console.log(categoryAll.category);
    
    
     if(categoryAll.category === "battery"){

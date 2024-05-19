@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import React,{useState, useEffect} from 'react'
 import { api } from '@/app/lib/api'
+import { useUser } from '../api'
+import { useSWRConfig } from 'swr'
 
 async function fetchUsers (){
   const res = await fetch(api.Api+"users/", {
@@ -21,17 +23,16 @@ async function fetchUsers (){
 const Page = () => {
   const [alldata, setAllData] = useState([]);
   const [deleteUserId, setDeleteUserId] = useState(0);
+  // console.log(user);
+  const {user, isLoading, error} = useUser();
 
-  useEffect(()=>{
-    const fetchAllUsers = async() =>{
-      const data = await fetchUsers();
-      setAllData(data);
-    }
-    fetchAllUsers();
-  },[deleteUserId])
+  const { mutate } = useSWRConfig()
+
 
 const deleteUser = async(e) => {
+
   const id = e.target.dataset.id;
+
   const res = await fetch(api.Api+"deleteuserbyid/", {
     method: 'POST',
     headers: {
@@ -39,9 +40,13 @@ const deleteUser = async(e) => {
     },
     body: JSON.stringify({"user_id": id}),
   })
+
   const response = await res.json();
+
   if(response['message'] ==="User deleted"){
-    setDeleteUserId(id);
+    // setDeleteUserId(id);
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    mutate(`${api.Api}user/`)
   }
 }
 
@@ -80,7 +85,7 @@ const deleteUser = async(e) => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                {alldata.map((users,id) => {
+                {user && user.map((users,id) => {
  if(users.is_superuser === false){
   return <tr key={id}>
   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">

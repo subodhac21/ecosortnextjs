@@ -3,6 +3,8 @@ import Example from "../components/leftbar";
 import { useEffect, useState } from "react";
 import { validateToken } from "../lib/validateToken";
 import {useRouter} from "next/navigation";
+import { SWRConfig } from 'swr'
+
 
 export default function DashboardLayout({
     children, // will be a page or nested layout
@@ -25,8 +27,16 @@ export default function DashboardLayout({
       validateKey();
       
     },[])
+   
+    
+   
     return (
       <>
+        <SWRConfig 
+      value={{
+        refreshInterval: 3000,
+        fetcher: (resource, init) => fetch(resource, init).then(res => res.json())
+      }}>
       {
         loading === true ? (
           <div role="status" className="w-full h-screen flex justify-center items-center">
@@ -43,6 +53,8 @@ export default function DashboardLayout({
           </Example>
         </section>)
       }
+      </SWRConfig>
+      
       
       </>
     )

@@ -22,30 +22,9 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { validateToken } from '../lib/validateToken'
+import { useUser } from '../dashboard/api'
 
 
-async function fetchUsers (){
-  const res = await fetch(api.Api+"users/", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // body: JSON.stringify(loginInfo),
-  })
- 
-  const data = await res.json()
-  const teams = [
-
-  ]
-  data.forEach((d, i)=>{
-    if(i<3){
-      teams.push(
-        { id: i+1, name: d.username, href: '#', initial: `${i+1}`, current: false },
-      );
-    }
-  })
-  return teams;
-}
 
 const userNavigation = [
   { name: 'Your profile', href: '#' },
@@ -59,6 +38,17 @@ function classNames(...classes) {
 
 
 export default function Example({children}) {
+  const {user, isLoading, error} = useUser();
+  const teams = [
+
+  ]
+  user && user.forEach((d, i)=>{
+    if(i<3){
+      teams.push(
+        { id: i+1, name: d.username, href: '#', initial: `${i+1}`, current: false },
+      );
+    }
+  })
   const path = usePathname();
   const [usernameField, setUsernameField] = useState("");
   useEffect(()=>{
@@ -71,15 +61,6 @@ export default function Example({children}) {
   },[])
  
 
-  const [teams, setAllData] = useState([]);
-
-  useEffect(()=>{
-    const fetchAllUsers = async() =>{
-      const data = await fetchUsers();
-      setAllData(data);
-    }
-    fetchAllUsers();
-  },[])
   const navigation = [
     { name: 'Dashboard', href: '/dashboard/', icon: HomeIcon, current: path ==="/dashboard"?true: false },
     { name: 'Garbages', href: '/dashboard/garbages', icon: FolderIcon, current: path ==="/dashboard/garbages"? true: false },
