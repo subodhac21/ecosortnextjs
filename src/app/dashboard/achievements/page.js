@@ -2,31 +2,12 @@
 import Link from 'next/link'
 import React, {useState, useEffect} from 'react'
 import { api } from '@/app/lib/api'
-
-async function fetchCampaign (){
-  const res = await fetch(api.Api+"allachieve/", {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    // body: JSON.stringify(loginInfo),
-  })
- 
-  const data = await res.json()
-  return data;
-}
+import { useAchieve } from '../api'
 
 
 const Page = () => {
-  const [alldata, setAllData] = useState([]);
-
-  useEffect(()=>{
-    const fetchCampaign2 = async() =>{
-      const data = await fetchCampaign();
-      setAllData(data);
-    }
-    fetchCampaign2();
-  },[])
+  const {data, isLoading, error} = useAchieve();
+  
     return (
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="sm:flex sm:items-center">
@@ -65,7 +46,7 @@ const Page = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                {alldata.map((achievement,id) => (
+                {data && data.map((achievement,id) => (
                   <tr key={id}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
                       {achievement.description}

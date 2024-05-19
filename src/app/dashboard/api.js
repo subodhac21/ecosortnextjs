@@ -19,4 +19,14 @@ function useUser () {
 
 
 
-export {useUser}
+function useAchieve () {
+  const { data, error, isLoading } = useSWR(`${api.Api}allachieve/`, fetcher)
+ 
+  return {
+    data: data,
+    isLoading,
+    isError: error
+  }
+}
+
+export {useUser, useAchieve}
